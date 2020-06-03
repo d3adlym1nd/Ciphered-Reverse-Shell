@@ -157,6 +157,7 @@ int Server::sckInit(){
 }
 
 int main(){
+	signal(SIGPIPE, SIG_IGN);
 	Server *Srv = new Server(1337, "$up3rP@sSw0rD");
 	if(Srv->sckInit() != -1){
 		std::cout<<"Waiting for incomming connection\n";
