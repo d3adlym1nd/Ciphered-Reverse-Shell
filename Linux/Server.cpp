@@ -129,7 +129,7 @@ int Server::sckInit(){
 	strctAd.ai_flags = AI_PASSIVE;
 	if((iStat = getaddrinfo(nullptr, cLocalPort, &strctAd, &strctServer)) != 0){
 		std::cout<<"Error getaddrinfo\n";
-		return false;
+		return -1;
 	}
 	for(strctP = strctServer; strctP != nullptr; strctP = strctP->ai_next){
 		if((sckMainSocket = socket(strctP->ai_family, strctP->ai_socktype, strctP->ai_protocol)) == -1){
@@ -137,7 +137,7 @@ int Server::sckInit(){
 		}
 		if(setsockopt(sckMainSocket, SOL_SOCKET, SO_REUSEADDR, &iYes, sizeof(int)) == -1){
 			std::cout<<"setsockopt error\n";
-			return false;
+			return -1;
 		}
 		if(bind(sckMainSocket, strctP->ai_addr, strctP->ai_addrlen) == -1){
 			continue;
@@ -147,12 +147,12 @@ int Server::sckInit(){
 	freeaddrinfo(strctServer);
 	if(listen(sckMainSocket, 1) == -1){
 		std::cout<<"Error listening\n";
-		return false;
+		return -1;
 	}
 	if(sckMainSocket == -1 || strctP == nullptr){
-		return false;
+		return -1;
 	}
-	return true;
+	return -1;
 }
 
 int main(){
