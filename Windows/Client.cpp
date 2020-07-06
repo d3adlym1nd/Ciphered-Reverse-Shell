@@ -76,7 +76,7 @@ void Client::threadReadShell(HANDLE hPipe){
 	DWORD dBytesReaded = 0, dBufferC = 0, dBytesToWrite = 0;
 	BYTE bPChar = 0;
 	while(isRunningShell){
-		if(PeekNamedPipe(hPipe, nullptr, nullptr, &dBytesReaded, nullptr, nullptr)){
+		if(PeekNamedPipe(hPipe, nullptr, 0, &dBytesReaded, nullptr, nullptr)){
 			if(dBytesReaded > 0){
 				ReadFile(hPipe, cBuffer, 512, &dBytesReaded, nullptr);
 			} else {
